@@ -3,289 +3,525 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KUA Wonoasri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>KUA Wonoasri - Kantor Urusan Agama Kecamatan Wonoasri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .app-container {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 20px 16px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      background: white;
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background: #0a3d2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow: hidden;
+    }
+
+    /* Animated background pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(16, 78, 52, 0.8) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(0, 51, 34, 0.8) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+        linear-gradient(180deg, #061f16 0%, #0a3d2e 30%, #0e4d38 60%, #0a3d2e 100%);
+      z-index: 0;
+    }
+
+    /* Islamic geometric pattern overlay */
+    .pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.05;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(212, 175, 55, 0.3) 35px, rgba(212, 175, 55, 0.3) 36px),
+        repeating-linear-gradient(60deg, transparent, transparent 35px, rgba(212, 175, 55, 0.3) 35px, rgba(212, 175, 55, 0.3) 36px),
+        repeating-linear-gradient(120deg, transparent, transparent 35px, rgba(212, 175, 55, 0.3) 35px, rgba(212, 175, 55, 0.3) 36px);
       z-index: 1;
     }
 
-    .header {
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(212, 175, 55, 0.4);
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
       text-align: center;
-      margin-bottom: 24px;
+      max-width: 500px;
+      width: 100%;
     }
 
-    .logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 12px;
+    /* Logo styling */
+    .logo-container {
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-out;
     }
 
-    .logo img {
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-wrapper {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .logo-glow {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .logo-wrapper img {
       width: 100%;
       height: auto;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
     }
 
-    .title {
-      font-weight: 600;
-      font-size: 24px;
-      color: #2e5987;
-      margin-bottom: 8px;
+    /* Bismillah text */
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 28px;
+      color: rgba(212, 175, 55, 0.9);
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease-out 0.2s both;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
     }
 
-    .subtitle {
-      font-size: 16px;
-      color: #666;
-    }
-
-    .welcome {
-      background: #bbdefb;
-      padding: 16px;
-      border-radius: 12px;
-      margin-top: 16px;
-      font-size: 14px;
-      text-align: center;
-      color: #0d47a1;
-    }
-
-    .services {
-      margin-top: 24px;
-    }
-
-    .services-title {
-      font-weight: 600;
-      font-size: 20px;
-      margin-bottom: 16px;
-      color: #4a148c;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .card {
-      background: #e3f2fd;
-      padding: 16px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      font-size: 14px;
-      font-weight: 500;
-      color: #1a4e8a;
-      transition: 0.3s;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-
-    .card:hover {
-      background: #bbdefb;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-
-    /* Floating WhatsApp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      z-index: 100;
+    /* Decorative line */
+    .deco-line {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      animation: fadeInDown 1s ease-out 0.3s both;
+    }
+
+    .deco-line span {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+    }
+
+    .deco-line i {
+      color: rgba(212, 175, 55, 0.7);
+      font-size: 12px;
+    }
+
+    /* Title */
+    .title-section {
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-out 0.4s both;
+    }
+
+    .title-ministry {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(212, 175, 55, 0.8);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .title-main {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .title-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+    }
+
+    /* Description card */
+    .desc-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 35px;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .desc-card p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.7;
+    }
+
+    /* Quick info badges */
+    .quick-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 35px;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .info-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s;
+    }
+
+    .info-badge:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: rgba(212, 175, 55, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .info-badge i {
+      color: rgba(212, 175, 55, 0.8);
+      font-size: 14px;
+    }
+
+    /* CTA Button */
+    .cta-section {
+      animation: fadeInUp 1s ease-out 1s both;
+    }
+
+    .btn-enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #d4af37, #b8962e);
+      color: #0a3d2e;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 25px rgba(212, 175, 55, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-enter::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-enter:hover::before {
+      left: 100%;
+    }
+
+    .btn-enter:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-enter:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-enter i {
+      font-size: 18px;
       transition: transform 0.3s;
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.1);
+    .btn-enter:hover i {
+      transform: translateX(4px);
     }
 
-    .whatsapp-icon {
-      font-size: 32px;
-      margin-top: 2px;
+    /* Footer */
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+      animation: fadeInUp 1s ease-out 1.2s both;
     }
 
-    /* Toggle (hamburger) button */
-    .nav-toggle {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      z-index: 201;
-      font-size: 18px; /* LEBIH KECIL */
-      color: #1a4e8a;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.85); /* transparan sedikit */
-      padding: 6px;
-      border-radius: 8px;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(4px); /* efek blur modern */
+    .footer p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
     }
 
-
-    /* Slide Menu */
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -260px;
-      width: 250px;
-      height: 100%;
-      background: #fff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-      padding-top: 60px;
-      transition: right 0.3s ease;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .side-menu a {
-      padding: 16px 24px;
+    .footer a {
+      color: rgba(212, 175, 55, 0.5);
       text-decoration: none;
-      color: #1a4e8a;
-      font-weight: 500;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
 
-    .side-menu a:hover {
-      background-color: #f4f4f4;
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      animation: bounce 2s ease-in-out infinite;
     }
 
-    /* Overlay saat menu terbuka */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 150;
-      display: none;
+    .scroll-hint i {
+      color: rgba(212, 175, 55, 0.4);
+      font-size: 20px;
     }
 
-    .overlay.active {
-      display: block;
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .logo-wrapper {
+        width: 100px;
+        height: 100px;
+      }
+
+      .bismillah {
+        font-size: 24px;
+      }
+
+      .title-main {
+        font-size: 22px;
+      }
+
+      .title-sub {
+        font-size: 12px;
+      }
+
+      .btn-enter {
+        padding: 14px 36px;
+        font-size: 15px;
+      }
+
+      .quick-info {
+        gap: 8px;
+      }
+
+      .info-badge {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+    }
+
+    /* Dark mode preference */
+    @media (prefers-color-scheme: light) {
+      /* Keep the dark theme as it's designed for this specific look */
     }
   </style>
 </head>
 <body>
 
-  <!-- Hamburger Button -->
-  <div class="nav-toggle" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
+  <div class="hero">
+    <div class="pattern-overlay"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Bismillah -->
+      <div class="bismillah">&#1576;&#1616;&#1587;&#1618;&#1605;&#1616; &#1575;&#1604;&#1604;&#1617;&#1607;&#1616; &#1575;&#1604;&#1585;&#1617;&#1614;&#1581;&#1618;&#1605;&#1614;&#1606;&#1616; &#1575;&#1604;&#1585;&#1617;&#1614;&#1581;&#1616;&#1610;&#1605;&#1616;</div>
+
+      <!-- Decorative Line -->
+      <div class="deco-line">
+        <span></span>
+        <i class="fas fa-star-and-crescent"></i>
+        <span></span>
+      </div>
+
+      <!-- Logo -->
+      <div class="logo-container">
+        <div class="logo-wrapper">
+          <div class="logo-glow"></div>
+          <img src="images/logo_kemenag.png" alt="Logo Kementerian Agama Republik Indonesia">
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div class="title-section">
+        <div class="title-ministry">Kementerian Agama RI</div>
+        <div class="title-main">Kantor Urusan Agama</div>
+        <div class="title-sub">Kecamatan Wonoasri, Kabupaten Madiun</div>
+      </div>
+
+      <!-- Description -->
+      <div class="desc-card">
+        <p>
+          Melayani Umat dengan Sepenuh Hati. Menyediakan pelayanan nikah, wakaf, 
+          sertifikasi halal, dan administrasi keagamaan lainnya secara profesional 
+          dan terintegrasi.
+        </p>
+      </div>
+
+      <!-- Quick Info -->
+      <div class="quick-info">
+        <div class="info-badge">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Wonoasri, Madiun</span>
+        </div>
+        <div class="info-badge">
+          <i class="fas fa-clock"></i>
+          <span>Sen - Jum, 08:00 - 15:00</span>
+        </div>
+        <div class="info-badge">
+          <i class="fas fa-headset"></i>
+          <span>0858-0025-6020</span>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="cta-section">
+        <a href="home.html" class="btn-enter">
+          <span>Masuk Layanan</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2025 KUA Kecamatan Wonoasri &mdash; Kabupaten Madiun &mdash; <a href="https://www.kemenag.go.id" target="_blank">Kementerian Agama RI</a></p>
+    </div>
   </div>
 
-  <!-- Overlay -->
-  <!-- Hamburger Button (kecil dan tidak mengganggu) -->
-<div class="nav-toggle" onclick="toggleMenu()">
-  <i class="fas fa-bars"></i>
-</div>
-
-<!-- Overlay untuk gelap di belakang menu -->
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-<!-- Slide Navigation Menu (Semua Layanan) -->
-<div class="side-menu" id="sideMenu">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="nikah.html"><i class="fas fa-ring"></i> Nikah</a>
-  <a href="akta_ikrar_wakaf.html"><i class="fas fa-file-signature"></i> Akta Ikrar Wakaf</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEWys7Uksy7DfbAa6_-QU7x7-VV6_jt8NTQgbMSm-ClmUucQ/viewform" target="_blank">
-    <i class="fas fa-mosque"></i> SKT Masjid
-  </a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSezEO8GaXHhYZrlqXJDi-z_10exCYZHYvnZkccFJLN8Qh2gdw/viewform" target="_blank">
-    <i class="fas fa-place-of-worship"></i> SKT Musholla
-  </a>
-  <a href="https://forms.gle/4WuvEzfv4nows8FeA" target="_blank">
-    <i class="fas fa-book"></i> SKT Majelis Taklim
-  </a>
-  <a href="sertifikasi_halal.html"><i class="fas fa-certificate"></i> Sertifikasi Halal</a>
-  <a href="https://drive.google.com/drive/folders/1mAg_H_-jq6yYZ-PesvGb4gdsiTINPDWg" target="_blank">
-    <i class="fas fa-kaaba"></i> Haji & Umroh
-  </a>
-  <a href="social_media.html"><i class="fas fa-hashtag"></i> Social Media</a>
-</div>
-
-
-  <!-- Konten Utama -->
-  <div class="app-container">
-    <div class="header">
-      <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Kementerian_Agama_new_logo.png/640px-Kementerian_Agama_new_logo.png" alt="Logo Kementerian Agama">
-      </div>
-      <div class="title">KANTOR URUSAN AGAMA</div>
-      <div class="subtitle">KECAMATAN WONOASRI, KABUPATEN MADIUN</div>
-    </div>
-
-    <div class="welcome">
-      Selamat Datang di Website Pelayanan Online<br>
-      <strong>Kantor Urusan Agama Kecamatan Wonoasri, Kab. Madiun</strong>
-    </div>
-
-    <div class="services">
-      <div class="services-title">Pelayanan Kami</div>
-      <div class="grid">
-        <a href="nikah.html" target="_blank" class="card"><img src="images/nikah.png" alt="Nikah" style="width: 30px; height: 30px; margin-bottom: 4px;">Nikah</a>
-        <a href="akta_ikrar_wakaf.html" target="_blank" class="card"><img src="images/scroll.png" alt="Akta Ikrar Wakaf" style="width: 30px; height: 30px; margin-bottom: 4px;">Akta Ikrar Wakaf</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEWys7Uksy7DfbAa6_-QU7x7-VV6_jt8NTQgbMSm-ClmUucQ/viewform?fbzx=5122979355886916387" target="_blank" class="card"><img src="images/mosque.png" alt="Masjid" style="width: 40px; height: 40px; margin-bottom: 4px;">SKT Masjid</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezEO8GaXHhYZrlqXJDi-z_10exCYZHYvnZkccFJLN8Qh2gdw/viewform" target="_blank" class="card"><img src="images/musholla.png" alt="Musholla" style="width: 40px; height: 40px; margin-bottom: 4px;">SKT Musholla</a>
-        <a href="https://forms.gle/4WuvEzfv4nows8FeA" target="_blank" class="card"><img src="images/quran.png" style="width: 40px; height: 40px; margin-bottom: 4px;">SKT Majelis Taklim</a>
-        <a href="sertifikasi_halal.html" target="_blank" class="card"><img src="images/sertifikat_halal.png" style="width: 40px; height: 40px; margin-bottom: 4px;">Sertifikasi Produk Halal</a>
-        <a href="https://drive.google.com/drive/folders/1mAg_H_-jq6yYZ-PesvGb4gdsiTINPDWg" target="_blank" class="card"><img src="images/kaaba.png" style="width: 30px; height: 30px; margin-bottom: 4px;">Informasi Haji & Umroh</a>
-        <a href="social_media.html" target="_blank" class="card"><img src="images/sosmed.png" style="width: 30px; height: 30px; margin-bottom: 4px;">Social Media</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tombol WhatsApp -->
-  <a href="https://wa.me/6285800256020?text=Assalamu'alaikum%20Admin%20KUA%20Wonoasri%2C%20saya%20ingin%20bertanya%20terkait%20pelayanan%20di%20KUA%20Wonoasri.%20Mohon%20bantuannya." 
-     class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp whatsapp-icon"></i>
-  </a>
-
-  <!-- Script Toggle Menu -->
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      const overlay = document.getElementById("overlay");
-
-      if (menu.style.right === "0px") {
-        menu.style.right = "-260px";
-        overlay.classList.remove("active");
-      } else {
-        menu.style.right = "0px";
-        overlay.classList.add("active");
+    // Generate floating particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 25;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = (Math.random() * 4 + 2) + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        container.appendChild(particle);
       }
     }
+
+    createParticles();
   </script>
 
 </body>
