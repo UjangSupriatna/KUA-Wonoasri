@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KUA Wonoasri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      color: #333;
+    }
+
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 12px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 24px;
+      color: #2e5987;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .welcome {
+      background: #bbdefb;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+      color: #0d47a1;
+    }
+
+    .services {
+      margin-top: 24px;
+    }
+
+    .services-title {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: #4a148c;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      background: #e3f2fd;
+      padding: 16px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a4e8a;
+      transition: 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .card:hover {
+      background: #bbdefb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-icon {
+      font-size: 32px;
+      margin-top: 2px;
+    }
+
+    /* Toggle (hamburger) button */
+    .nav-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 201;
+      font-size: 18px; /* LEBIH KECIL */
+      color: #1a4e8a;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.85); /* transparan sedikit */
+      padding: 6px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(4px); /* efek blur modern */
+    }
+
+
+    /* Slide Menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      padding-top: 60px;
+      transition: right 0.3s ease;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-menu a {
+      padding: 16px 24px;
+      text-decoration: none;
+      color: #1a4e8a;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .side-menu a:hover {
+      background-color: #f4f4f4;
+    }
+
+    /* Overlay saat menu terbuka */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 150;
+      display: none;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hamburger Button -->
+  <div class="nav-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Overlay -->
+  <!-- Hamburger Button (kecil dan tidak mengganggu) -->
+<div class="nav-toggle" onclick="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</div>
+
+<!-- Overlay untuk gelap di belakang menu -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- Slide Navigation Menu (Semua Layanan) -->
+<div class="side-menu" id="sideMenu">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="nikah.html"><i class="fas fa-ring"></i> Nikah</a>
+  <a href="akta_ikrar_wakaf.html"><i class="fas fa-file-signature"></i> Akta Ikrar Wakaf</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEWys7Uksy7DfbAa6_-QU7x7-VV6_jt8NTQgbMSm-ClmUucQ/viewform" target="_blank">
+    <i class="fas fa-mosque"></i> SKT Masjid
+  </a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSezEO8GaXHhYZrlqXJDi-z_10exCYZHYvnZkccFJLN8Qh2gdw/viewform" target="_blank">
+    <i class="fas fa-place-of-worship"></i> SKT Musholla
+  </a>
+  <a href="https://forms.gle/4WuvEzfv4nows8FeA" target="_blank">
+    <i class="fas fa-book"></i> SKT Majelis Taklim
+  </a>
+  <a href="sertifikasi_halal.html"><i class="fas fa-certificate"></i> Sertifikasi Halal</a>
+  <a href="https://drive.google.com/drive/folders/1mAg_H_-jq6yYZ-PesvGb4gdsiTINPDWg" target="_blank">
+    <i class="fas fa-kaaba"></i> Haji & Umroh
+  </a>
+  <a href="social_media.html"><i class="fas fa-hashtag"></i> Social Media</a>
+</div>
+
+  <div class="app-container">
+    <div class="header">
+        
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Kementerian_Agama_new_logo.png/640px-Kementerian_Agama_new_logo.png" alt="Logo Kementerian Agama">
+      </div>
+      <div class="title">KANTOR URUSAN AGAMA</div>
+      <div class="subtitle">KECAMATAN WONOASRI, KABUPATEN MADIUN</div>
+    </div>
+
+    <div class="welcome">
+    Pembuatan Dokumen Persyaratan penerbitan Akta Ikrar Wakaf
+    <br>
+    <strong>Kantor Urusan Agama Kecamatan Wonoasri, Kab. Madiun</strong>
+    </div>
+
+    <div class="services">
+    <div class="services-title">Pendaftaran Akta Ikrar Wakaf</div>
+    <div class="grid">
+        <a href="https://forms.gle/RjzHrgCASJDDtZRq5" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;"></i>Surat Pernyataan Wakaf Bersama <br><small>Wakif 3 Orang</small></a>
+        <a href="https://forms.gle/hDa2hFVCDzk16NWW6" target="_blank" class="card">    <img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Kesediaan <br><small>Menjadi Nadzir (Individu)</small></a>
+        <a href="https://forms.gle/b41EPh8Cp3RzmvP8A" target="_blank" class="card"> <img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Kesediaan <br><small>Menjadi Nadzir (3 Orang)</small></a>
+        <a href="https://forms.gle/YJqWFYgojvgbRagD6" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Kesediaan <br><small>Menjadi Nadzir (Organisasi/Badan Hukum)</small></a>
+        <a href="https://forms.gle/H5CwRErRHhsAJpq56" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Tidak Sengketa</a>
+        <a href="https://forms.gle/xQQfqJ3qbc7Tmjas7" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Bersedia <br><small>di Audit Individu</small></a>
+        <a href="https://forms.gle/8FyoTS4TknrwQgt3A" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Bersedia <br><small>di Audit Nadzir 3 orang</small></a>
+        <a href="https://forms.gle/CiWnVpNKBTZTpAov8" target="_blank" class="card"><img src="images/form_sigesit.png" style="width: 35px; height: 35px; margin-bottom: 4px;">Surat Pernyataan Bersedia <br><small>di Audit Nadzir Badan Hukum</small></a>
+
+        <a href="https://wa.me/6285785730004?text=Assalamu%27alaikum%2C%20saya%20ingin%20bertanya%20mengenai%20persyaratan%20wakaf%20di%20KUA%20Wonoasri.%20Mohon%20informasinya%20lebih%20lanjut.%20Terima%20kasih." 
+          target="_blank" 
+          class="card" 
+          style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+          <i class="fab fa-whatsapp whatsapp-icon"></i>
+          <span>Petugas Wakaf</span>
+        </a>
+         
+    </div>
+    </div>
+
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/6285800256020?text=Assalamu'alaikum%20Admin%20KUA%20Wonoasri%2C%20saya%20ingin%20bertanya%20terkait%20pelayanan%20di%20KUA%20Wonoasri.%20Mohon%20bantuannya." 
+   class="whatsapp-float" 
+   target="_blank">
+  <i class="fab fa-whatsapp whatsapp-icon"></i>
+</a>
+
+<!-- Script Toggle Menu -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      const overlay = document.getElementById("overlay");
+
+      if (menu.style.right === "0px") {
+        menu.style.right = "-260px";
+        overlay.classList.remove("active");
+      } else {
+        menu.style.right = "0px";
+        overlay.classList.add("active");
+      }
+    }
+  </script>
+
+</body>
+</html>
